@@ -15,6 +15,7 @@ items = dict()
 finds = dict()
 sounds= dict() #keep track of which sounds have been played
 asciis = dict()
+battles = dict()
 #initialize dicts to keep track of stops,
 #  and items by attributes
 
@@ -23,7 +24,7 @@ g_map = None
 hashes = 20
 ats = 20
 
-def open_game(game_file):
+def load_game(game_file):
     '''
     this function opens a player that has a saved game
     '''
@@ -67,6 +68,11 @@ def main():
     for stop in g_map.stop:
         nomen = stop.attrs["nomen"]
         stops[nomen] = stop
+
+    for scenario in g_map.scenario:
+        ats = scenario.attrs['ats']
+        hashes = scenario.attrs['hashes']
+        battles[(ats,hashes)] = scenario
 
     global player
     player = g_map.player[0]
@@ -208,7 +214,7 @@ def process_command(stop, command): #can also pass stop!
                 game_file = 'game.xml'
         else:
             game_file = 'game.xml'
-        return open_game(game_file)
+        return load_game(game_file)
 
     elif verb == "save" and noun=="game":
         stop_nomen = g_map.stop.attrs["nomen"]
@@ -240,7 +246,7 @@ def twitter_data(boss_kw):
     call_prompt = raw_input("What's your call against this mean muggin?!")
 
     #start twitter game here
-    hash_diff, at_diff = battle(boss_kw,call_prompt)
+    hash_diff, at_diff = battle2(boss_kw,call_prompt)
     #return tuple of diff of ats and hashes
     # call_difference
     # a.)grabs the noun as the keyword in twitter for the move/item of the spot
@@ -248,6 +254,7 @@ def twitter_data(boss_kw):
     # b.)grab the keyword
 
     finds[boss_kw] = hash_diff,at_diff
+    #maybe use get function here to define
 
     hashes += hash_diff
     ats += at_diff
@@ -374,5 +381,31 @@ def battle(boss_kw, call_prompt):
             print "They smoked you out!"
             print "You lose", hashes_diff, "of your stash."
     return ats_diff, hashes_diff
+
+def battle2(boss_kw, call_prompt):
+    boss_ats = retweets()[1]
+    boss_hashes = retweets()[2]
+    player_ats = TW.recent_tweets([call_prompt],1)[1]
+    player_hashes = TW.recent_tweets([call_prompt],1)[2]
+    ats_diff = player_ats - boss_ats
+    hashes_diff = player_hashes - boss_hashes
+    print "Hash from battle:", hashes_diff
+    print "Holler-Ats from battle:",ats_diff
+    if ats_diff > 0:
+        ats_winner = 'player'
+    elif ats_diff == 0:
+        ats_winner = 'equal'
+    else:
+        ats_winner = 'boss'
+
+    if hashes_diff >0:
+        hashes_winner = 'player'
+    elif hashes_diff ==0:
+        hashes_winner = 'equal'
+    else:
+        hashes_winner = 'boss'
+
+    print battle[(ats_winner,hashes_winner)].desc[0].value
+
 
 main()

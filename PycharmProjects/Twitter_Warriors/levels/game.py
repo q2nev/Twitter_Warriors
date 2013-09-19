@@ -58,26 +58,19 @@ class place_q2class(Q2API.xml.base_xml.XMLNode):
         self.desc = []
         Q2API.xml.base_xml.XMLNode.__init__(self, "place", attrs, None, [])
 
-class scenario_q2class(Q2API.xml.base_xml.XMLNode):
-    def __init__(self, attrs):
-        self.level = 3
-        self.path = [None, u'game', u'battle']
-        self.desc = []
-        Q2API.xml.base_xml.XMLNode.__init__(self, "scenario", attrs, None, [])
-
-class battle_q2class(Q2API.xml.base_xml.XMLNode):
-    def __init__(self, attrs):
-        self.level = 2
-        self.path = [None, u'game']
-        self.scenario = []
-        Q2API.xml.base_xml.XMLNode.__init__(self, "battle", attrs, None, [])
-
 class player_q2class(Q2API.xml.base_xml.XMLNode):
     def __init__(self, attrs):
         self.level = 2
         self.path = [None, u'game']
         self.item = []
         Q2API.xml.base_xml.XMLNode.__init__(self, "player", attrs, None, [])
+
+class scenario_q2class(Q2API.xml.base_xml.XMLNode):
+    def __init__(self, attrs):
+        self.level = 2
+        self.path = [None, u'game']
+        self.desc = []
+        Q2API.xml.base_xml.XMLNode.__init__(self, "scenario", attrs, None, [])
 
 class stop_q2class(Q2API.xml.base_xml.XMLNode):
     def __init__(self, attrs):
@@ -93,9 +86,9 @@ class game_q2class(Q2API.xml.base_xml.XMLNode):
     def __init__(self, attrs):
         self.level = 1
         self.path = [None]
+        self.scenario = []
         self.stop = []
         self.player = []
-        self.battle = []
         Q2API.xml.base_xml.XMLNode.__init__(self, "game", attrs, None, [])
 
 class NodeHandler(xml.sax.handler.ContentHandler):
@@ -135,9 +128,6 @@ class NodeHandler(xml.sax.handler.ContentHandler):
 
         elif name == "place":
             self.obj_depth.append(place_q2class(p_attrs))
-
-        elif name == "battle":
-            self.obj_depth.append(battle_q2class(p_attrs))
 
         elif name == "im":
             self.obj_depth.append(im_q2class(p_attrs))
@@ -196,12 +186,6 @@ class NodeHandler(xml.sax.handler.ContentHandler):
 
         elif name == "place":
             self.obj_depth[-2].place.append(self.obj_depth[-1]) #  make this object a child of the next object up...
-            self.obj_depth[-2].children.append(self.obj_depth[-1]) #  put a reference in the children list as well
-            self.obj_depth.pop() # remove this node from the list, processing is complete
-            self.char_buffer = []
-
-        elif name == "battle":
-            self.obj_depth[-2].battle.append(self.obj_depth[-1]) #  make this object a child of the next object up...
             self.obj_depth[-2].children.append(self.obj_depth[-1]) #  put a reference in the children list as well
             self.obj_depth.pop() # remove this node from the list, processing is complete
             self.char_buffer = []
