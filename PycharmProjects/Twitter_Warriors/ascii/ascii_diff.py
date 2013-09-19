@@ -80,5 +80,6 @@ def image_diff(filename):
         if i == 50:
             print image_string
             i=0
-            image_string = ""
+            image_string += "\n"
+    return image_string
 

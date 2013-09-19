@@ -91,7 +91,7 @@ def describe(stop):
     print stop.desc[0].value
 
     play_music(stop)
-    image_to_ascii(stop)
+    #image_to_ascii(stop)
 
 
 def process_command(stop, command): #can also pass stop!
@@ -152,38 +152,34 @@ def process_command(stop, command): #can also pass stop!
         elif itm:
             print itm.desc[0].value
 
-        elif verb == "load":
-            games = os.listdir("..//save")
-            if games:
-                for i, file_name in enumerate(games):
-                    print str(i) + "\t" + file_name.split(".")[0]
-                    choice = raw_input("choose a game or type 'N' for a new game\n>")
-                    if choice not in ["N", "n", "new", "NEW"]:
-                        try:
-                            game_file = "saved_games\\" + games[int(choice)]
-                        except:
-                            print "you failed to type a number. HOW?!?"
-                    else:
-                        return 'game.xml'
-            else:
-                return 'game.xml'
-
-        elif verb == "save":
-            stop_nomen = g_map.stop.attrs["nomen"]
-            player.attrs["stop"] = str(stop_nomen)
-            save_file = raw_input("enter a name for the save file>")
-            game_data = g_map.flatten_self()
-            with open("saved_games\\" + save_file + ".xml", "w") as f:
-                f.write(game_data)
-                print "game saved!"
-            return stop
-
-        elif verb == "exit":
-            exit()
-
+    elif verb == "load":
+        games = os.listdir("..//save")
+        if games:
+            for i, file_name in enumerate(games):
+                print str(i) + "\t" + file_name.split(".")[0]
+                choice = raw_input("choose a game or type 'N' for a new game\n>")
+                if choice not in ["N", "n", "new", "NEW"]:
+                    try:
+                        game_file = "saved_games\\" + games[int(choice)]
+                    except:
+                        print "WHAT?"
+                else:
+                    return 'game.xml'
         else:
-            print "No such place."
+            return 'game.xml'
 
+    elif verb == "save":
+        stop_nomen = g_map.stop.attrs["nomen"]
+        player.attrs["stop"] = str(stop_nomen)
+        save_file = raw_input("enter a name for the save file>")
+        game_data = g_map.flatten_self()
+        with open("saved_games\\" + save_file + ".xml", "w") as f:
+            f.write(game_data)
+            print "game saved!"
+        return stop
+
+    elif verb == "exit":
+        exit()
 
     elif verb =="get":
         pass
