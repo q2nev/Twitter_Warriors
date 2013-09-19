@@ -405,53 +405,58 @@
         </place>
     </stop>
     <battle>
-        <scenario ats="boss" hash="boss">
-            <desc>
+        <scenario ats="boss" hash="boss" sd="">
+            <desc ats="boss" hash="boss" sd="">
                 They smoked you out! And you couldn't fight!
                 You lose some of your stash! And your ats!
             </desc>
         </scenario>
-        <scenario ats="boss" hash="equal">
-            <desc>
-
+        <scenario ats="boss" hash="equal" sd="">
+            <desc ats="boss" hash="equal" sd="">
+                They're packing the same hashes!
+                Run brother, run!!
+            </desc>
+        </scenario>
+        <scenario ats="boss" hash="player" sd="">
+            <desc ats="boss" hash="player" sd="">
+                You smoked them out!
+            </desc>
+        </scenario>
+        <scenario ats="equal" hash="boss" sd="">
+            <desc ats="equal" hash="boss" sd="">
+                They smoked you out! And grabbed some of your hash!
+                You drawed on holler-ats!
+                So your crew can't help you out!
+                You better move on, because this sucker is all hashed up.
+            </desc>
+        </scenario>
+        <scenario ats="equal" hash="equal" sd="">
+            <desc ats="equal" hash="equal" sd="">
+                It's a draw!
+                Somethings are better left unsaid, player.
+                You best dry your eyes.
+            </desc>
+        </scenario>
+        <scenario ats="equal" hash="player" sd="">
+            <desc ats="equal" hash="player">
+                You smoked them out and grabbed some of their hash!
+                We're rich bitch!
+            </desc>
+        </scenario>
+        <scenario ats="player" hash="boss" sd="">
+            <desc ats="player" hash="boss" sd="">
+                You out hollered them. You mad tweeter, you!
+            </desc>
+        </scenario>
+        <scenario ats="player" hash="equal" sd="">
+            <desc ats="player" hash="equal" sd="">
 
             </desc>
         </scenario>
-        <scenario ats="boss" hash="player">
-            <desc>
+        <scenario ats="player" hash="player" sd="">
+            <desc ats="player" hash="player" sd="">
 
             </desc>
         </scenario>
-        <scenario ats="equal" hash="boss">
-            <desc>
-
-            </desc>
-        </scenario>
-        <scenario ats="equal" hash="equal">
-            <desc>
-
-            </desc>
-        </scenario>
-        <scenario ats="equal" hash="player">
-            <desc>
-
-            </desc>
-        </scenario>
-        <scenario ats="player" hash="boss">
-            <desc>
-
-            </desc>
-        </scenario>
-        <scenario ats="player" hash="equal">
-            <desc>
-
-            </desc>
-        </scenario>
-        <scenario ats="player" hash="player">
-            <desc>
-
-            </desc>
-        </scenario>
-
     </battle>
 </game>
