@@ -19,6 +19,34 @@ asciis = dict()
 #  and items by attributes
 
 #initialize hashes and ats
+g_map = None
+hashes = 20
+ats = 20
+
+def open_game(game_file):
+    '''
+    this function opens a player that has a saved game
+    '''
+    with open('..//levels//'+game_file) as f:
+        xml_file = f.read()
+
+    success, p_map = game.obj_wrapper(xml_file)
+
+    if not success:
+        print "Failure to wrap object."
+        exit()
+
+    global player #only need player from file
+    global stops #grab dict from main file so that we can call current stop from nomen attribute
+
+    player = p_map.player[0]
+
+    nomen = player.attrs["stop"]
+
+    stop = stops[nomen]
+
+    return stop
+
 
 def main():
     global g_map
@@ -29,9 +57,13 @@ def main():
         xml_file = f.read()
 
     success, g_map = game.obj_wrapper(xml_file)
+    if not success:
+        print "Failure to wrap object. Try running mk_class again."
+        exit()
 
     # construct stops dict
     global stops
+
     for stop in g_map.stop:
         nomen = stop.attrs["nomen"]
         stops[nomen] = stop
@@ -86,12 +118,14 @@ def play_music(stop):
         sound.play(maxtime=25000)
 
 def describe(stop):
-
+    #always print the name of the current station
     print stop.attrs["nomen"].upper(), "STATION"
     print stop.desc[0].value
-
+    #plays the current stations music
     play_music(stop)
+
     #image_to_ascii(stop)
+    return stop
 
 
 def process_command(stop, command): #can also pass stop!
@@ -106,7 +140,13 @@ def process_command(stop, command): #can also pass stop!
 
     places, items, fights = get_data(stop)
     verb, noun = parse(command)
+    # print verb
+    # print len(verb)
+    # print type(verb)
 
+    # print noun
+    # print len(noun)
+    # print type(noun)
     if verb == "go":
         pl = places.get(noun)
         if pl:
@@ -152,23 +192,25 @@ def process_command(stop, command): #can also pass stop!
         elif itm:
             print itm.desc[0].value
 
-    elif verb == "load":
+    elif verb == "load" and noun =="game":
         games = os.listdir("..//save")
         if games:
             for i, file_name in enumerate(games):
                 print str(i) + "\t" + file_name.split(".")[0]
-                choice = raw_input("choose a game or type 'N' for a new game\n>")
-                if choice not in ["N", "n", "new", "NEW"]:
-                    try:
-                        game_file = "saved_games\\" + games[int(choice)]
-                    except:
-                        print "WHAT?"
-                else:
-                    return 'game.xml'
-        else:
-            return 'game.xml'
+            choice = raw_input("choose a game or type 'N' for a new game\n>")
+            if choice not in ["N", "n", "new", "NEW"]:
+                try:
+                    game_file = "saved_games\\" + games[int(choice)]
+                except:
+                    print "WHAT?"
 
-    elif verb == "save":
+            else:
+                game_file = 'game.xml'
+        else:
+            game_file = 'game.xml'
+        return open_game(game_file)
+
+    elif verb == "save" and noun=="game":
         stop_nomen = g_map.stop.attrs["nomen"]
         player.attrs["stop"] = str(stop_nomen)
         save_file = raw_input("enter a name for the save file>")
@@ -245,7 +287,8 @@ def get_data(stop): #can also pass stop and will have same result!
 translate_verb = {"g" : "go","go" : "go","walk" : "go","get" : "go","jump" : "go",
                   "t" : "take", "take" : "take","grab" : "take",
                   "l":"describe","look":"describe","describe" : "describe","desc":"describe",
-                  "current":"cur","cur":"cur","give":"cur"
+                  "current":"cur","cur":"cur","give":"cur",
+                  "load":"load","start":"start","save":"save"
                   }
 
 translate_noun = {"n": "n","north":"n",
@@ -263,10 +306,11 @@ one_word_cmds = {"n" : "describe n","s" : "describe s","e" : "describe e","w" : 
                  "d" : "describe d",
                  "off" :"describe outside",
                  "on":"describe on",
-                 "l":"load","load":"load",
+                 "l":"load game","load":"load game",
                  "current": "describe around","now": "describe around","around":"describe around",
                  "i":"give inventory","h":"give inventory",
-                 "rules":"give rules","next": "go start","begin":"go start","start":"go start",
+                 "rules":"go how","how":"go how",
+                 "next": "go start","begin":"go start","start":"go start"
                  }
 
 def parse(cmd):

@@ -44,7 +44,7 @@ class desc2_q2class(Q2API.xml.base_xml.XMLNode):
 class item_q2class(Q2API.xml.base_xml.XMLNode):
     def __init__(self, attrs):
         self.level = 3
-        self.path = [None, u'game', u'stop']
+        self.path = [None, u'game', u'player']
         self.desc2 = []
         self.desc = []
         Q2API.xml.base_xml.XMLNode.__init__(self, "item", attrs, None, [])
@@ -76,6 +76,7 @@ class player_q2class(Q2API.xml.base_xml.XMLNode):
     def __init__(self, attrs):
         self.level = 2
         self.path = [None, u'game']
+        self.item = []
         Q2API.xml.base_xml.XMLNode.__init__(self, "player", attrs, None, [])
 
 class stop_q2class(Q2API.xml.base_xml.XMLNode):
