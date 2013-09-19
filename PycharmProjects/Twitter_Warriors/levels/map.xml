@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+    <game>
+        <level gang = "intro" burro = "0">
+            "From Stillwells and Ocean Avenue, you take the Q Train to Union Square, that is where "+"\n"+"you catch the Number 5 Bronx train to Eastchester."+"\n"+"'We ain't been to the Bronx before!' "+"\n"+"'No sweat! This Conclave is going to be a big item, every gang in the city is going to be there!'"+"\n"
+        </level>
+        <level gang = "turnbullacs" burro ="1">
+
+        </level>
+        <level gang = "stlouis">
+
+        </level>
+        <level gang = "memphis">
+
+        </level>
+        <level gang = "">
+
+        </level>
+        <level gang = "">
+
+        </level>
+
+    </game>

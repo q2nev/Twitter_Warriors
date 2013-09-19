@@ -1,0 +1,14 @@
+usernames,passwords,xml
+
+
+sam,blah,<sam><Location>0</Location><Inventory><SavedAts>0</SavedAts><SavedHashes>0</SavedHashes><Health>100</Health></Inventory></sam>
+
+nev,sling,<nev><Location>0</Location><Inventory><SavedAts>0</SavedAts><SavedHashes>0</SavedHashes><Health>100</Health></Inventory></nev>
+sam,sambo,<sam><Location>0</Location><Inventory><SavedAts>0</SavedAts><SavedHashes>0</SavedHashes><Health>100</Health></Inventory></sam>
+nev,nevbo,<nev><Location>0</Location><Inventory><SavedAts>0</SavedAts><SavedHashes>0</SavedHashes><Health>100</Health></Inventory></nev>
+nev,nevo,<nev><Location>0</Location><Inventory><SavedAts>0</SavedAts><SavedHashes>0</SavedHashes><Health>100</Health></Inventory></nev>
+nev,nevbo,<nev><Location>0</Location><Inventory><SavedAts>0</SavedAts><SavedHashes>0</SavedHashes><Health>100</Health></Inventory></nev>
+nev,nev,<nev><Location>0</Location><Inventory><SavedAts>0</SavedAts><SavedHashes>0</SavedHashes><Health>100</Health></Inventory></nev>
+nev,sambo,<nev><Location>0</Location><Inventory><SavedAts>0</SavedAts><SavedHashes>0</SavedHashes><Health>100</Health></Inventory></nev>
+sam,sambo,<sam><Location>0</Location><Inventory><SavedAts>0</SavedAts><SavedHashes>0</SavedHashes><Health>100</Health></Inventory></sam>
+hambone,sambone,<hambone><Location>0</Location><Inventory><SavedAts>0</SavedAts><SavedHashes>0</SavedHashes><Health>100</Health></Inventory></hambone>
