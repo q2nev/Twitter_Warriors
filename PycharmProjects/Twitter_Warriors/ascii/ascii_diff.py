@@ -78,7 +78,6 @@ def image_diff(filename):
         image_string += chr(current_key)
         i+=1
         if i == 50:
-            print image_string
             i=0
             image_string += "\n"
     return image_string

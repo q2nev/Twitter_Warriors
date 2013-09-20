@@ -112,26 +112,27 @@ def main():
 
 
 def image_to_ascii(stop):
+    image_folder = os.listdir('../ascii/')
     img= str(stop.attrs["im"]).strip(string.whitespace)
     img_txt = img[:-4]+'.txt'
-    if img in os.listdir('../ascii/'):
-        if img_txt in os.listdir('../ascii/'):
-            with open(img_txt) as f:
-                lines = f.readlines()
-                for line in lines:
-                    print line
-                    time.sleep(2)
 
-        elif img[-4:] == '.jpg' or img[-4:] == '.jpeg':
+    if img_txt in image_folder:
+        with open(img_txt) as f:
+            lines = f.readlines()
+            for line in lines:
+                print line
+
+    else:
+        try:
             ascii_string = ASC.image_diff('../ascii/'+img)
-            with open(img[:-4]+'.txt','w') as fin:
-                fin.write(ascii_string)
-
             for line in ascii_string:
                 print line
-                time.sleep(2)
-        else:
-            pass
+            with open(img_txt,'w+') as fin:
+                fin.write(ascii_string)
+        except:
+            print "Problem with current image."
+
+
 
 def play_music(stop):
     #sound_delay = str(stop.attrs["delay"]).strip(string.whitespace)
@@ -150,9 +151,8 @@ def describe(stop,mute=False,desc_num=0):
         print stop.attrs["nomen"].upper(), "STATION"
         print stop.desc[desc_num].value
     #plays the current stations music
-    play_music(stop)
-
-    #image_to_ascii(stop)
+    #play_music(stop)
+    image_to_ascii(stop)
     return stop
 
 def process_command(stop, command): #can also pass stop!
@@ -169,13 +169,7 @@ def process_command(stop, command): #can also pass stop!
 
     places, items, fights = get_data(stop)
     verb, noun = parse(command)
-    # print verb
-    # print len(verb)
-    # print type(verb)
 
-    # print noun
-    # print len(noun)
-    # print type(noun)
     if verb == "go":
         pl = places.get(noun)
         if pl:
