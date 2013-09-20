@@ -1,5 +1,5 @@
 <game>
-    <player stop="intro" hashes="20" ats="20" finds="{}">
+    <player stop="parkchester" hashes="20" ats="20" finds="{}">
         <item>pocket sand</item>
     </player>
     <stop nomen="intro" sd="good_ass_intro.ogg" im="intro-1.jpg">

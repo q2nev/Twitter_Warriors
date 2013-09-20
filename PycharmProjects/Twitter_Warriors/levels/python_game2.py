@@ -88,7 +88,7 @@ def main():
         command = raw_input(">")
         #returns next stop, prints various things via command
         stop = process_command(stop, command)
-        #process command includes:
+
 
 def image_to_ascii(stop):
     img= str(stop.attrs["im"]).strip(string.whitespace)
@@ -201,8 +201,10 @@ def process_command(stop, command): #can also pass stop!
     elif verb == "load" and noun =="game":
         games = os.listdir("..//save")
         if games:
-            for i, file_name in enumerate(games):
-                print str(i) + "\t" + file_name.split(".")[0]
+            for i, file_name in enumerate(games): #prints the leaderboard
+                if file_name.split(".")[1]=='.xml':
+                    print str(i) + "\t" + file_name.split(".")[0]
+
             choice = raw_input("choose a game or type 'N' for a new game\n>")
             if choice not in ["N", "n", "new", "NEW"]:
                 try:
@@ -216,12 +218,15 @@ def process_command(stop, command): #can also pass stop!
             game_file = 'game.xml'
         return load_game(game_file)
 
-    elif verb == "save" and noun=="game":
-        stop_nomen = g_map.stop.attrs["nomen"]
+    elif verb == "save":
+        #save_file: name to save file at via raw_input
+        stop_nomen = stop.attrs["nomen"]
         player.attrs["stop"] = str(stop_nomen)
+        # player.attrs["hashes"] =
         save_file = raw_input("enter a name for the save file>")
+        #file = open("../save/" + save_file + ".xml", "w+")
         game_data = g_map.flatten_self()
-        with open("saved_games\\" + save_file + ".xml", "w") as f:
+        with open("..\\save\\" + save_file + ".xml", "w+") as f:
             f.write(game_data)
             print "game saved!"
         return stop
@@ -405,7 +410,7 @@ def battle2(boss_kw, call_prompt):
     else:
         hashes_winner = 'boss'
 
-    print battle[(ats_winner,hashes_winner)].desc[0].value
+    print battles[(ats_winner,hashes_winner)].desc[0].value
 
 
 main()
