@@ -47,10 +47,12 @@
     <file path="/current_user.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1378764631991" ignored="false" />
     <file path="/game.xml" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379702768499" ignored="false" />
     <file path="/python_game.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379105875734" ignored="false" />
-    <file path="/python_game2.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379710564508" ignored="false" />
+    <file path="/python_game2.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379716975169" ignored="false" />
     <file path="/city_twitter.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379347751203" ignored="false" />
-    <file path="/ascii_diff.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379711957617" ignored="false" />
+    <file path="/ascii_diff.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379715003833" ignored="false" />
     <file path="/player.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379444901615" ignored="false" />
+    <file path="$PROJECT_DIR$/../RapBattle/strip.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379712424758" ignored="false" />
+    <file path="/strip.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379712424758" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,22 +81,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="python_game2.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="python_game2.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/levels/python_game2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="119" column="32" selection-start="2943" selection-end="2943" vertical-scroll-proportion="0.0">
+            <state line="49" column="0" selection-start="1125" selection-end="1125" vertical-scroll-proportion="0.375">
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ascii_diff.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ascii/ascii_diff.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="55" selection-start="1620" selection-end="1620" vertical-scroll-proportion="0.21538462">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -141,8 +134,8 @@
         <option value="$PROJECT_DIR$/levels/twitter.py" />
         <option value="$PROJECT_DIR$/levels/battle.py" />
         <option value="$PROJECT_DIR$/levels/game.xml" />
-        <option value="$PROJECT_DIR$/levels/python_game2.py" />
         <option value="$PROJECT_DIR$/ascii/ascii_diff.py" />
+        <option value="$PROJECT_DIR$/levels/python_game2.py" />
       </list>
     </option>
   </component>
@@ -346,7 +339,7 @@
       <recent name="C:\Users\nwatkins\PycharmProjects\Twitter_Warriors\gang_logos" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.python_game2">
+  <component name="RunManager" selected="Python.ascii_diff">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -766,7 +759,9 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ascii/ascii_diff.py" />
       <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
@@ -886,11 +881,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.249694" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13280293" sideWeight="0.57092196" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995272" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13280293" sideWeight="0.6004728" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3995272" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.429078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.429078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -964,11 +959,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/start/initialize_game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="44" selection-start="1648" selection-end="1648" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ascii/examples/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -1040,19 +1030,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/levels/python_game2.py">
+    <entry file="file://$PROJECT_DIR$/ascii/Walt_small.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="32" selection-start="2943" selection-end="2943" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ascii/ascii_diff.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="55" selection-start="1620" selection-end="1620" vertical-scroll-proportion="0.21538462">
+        <state line="81" column="36" selection-start="2009" selection-end="2009" vertical-scroll-proportion="1.3145833">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/levels/python_game2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="0" selection-start="1125" selection-end="1125" vertical-scroll-proportion="0.375">
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

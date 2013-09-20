@@ -48,6 +48,9 @@ def load_game(game_file):
 
     return stop
 
+def print_break():
+    pass
+
 def load_ats_hashes(game_file):
     global ats
     global hashes
@@ -120,6 +123,7 @@ def image_to_ascii(stop):
         with open(img_txt) as f:
             lines = f.readlines()
             for line in lines:
+                print_break()
                 print line
     else:
         try:

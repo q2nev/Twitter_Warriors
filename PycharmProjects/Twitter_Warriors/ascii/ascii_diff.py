@@ -57,7 +57,8 @@ def image_list(file):
 
 def image_diff(filename):
     image_string = ""
-    i = 0
+    image_lines = []
+    t = 0
     for im in image_list(filename):
         current_key = 2
         chars = char_dict()
@@ -74,12 +75,13 @@ def image_diff(filename):
                 current_key = key
 
         image_string += chr(current_key)
-        i+=1
-        if i == 50:
+        t+=1
+        if t == 50:
             print image_string
             line = image_string
-            with open(filename[:-4]+'.txt', 'w+') as f:
-                f.append(line)
-            image_string += ""
-    return image_string
-
+            image_lines.append(line)
+            image_string = ""
+            t=0
+    with open(filename[:-4]+'.txt', 'w+') as f:
+        for line in image_lines:
+            f.write(line)
