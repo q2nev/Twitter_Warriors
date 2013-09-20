@@ -59,13 +59,11 @@ def image_diff(filename):
     image_string = ""
     i = 0
     for im in image_list(filename):
-
         current_key = 2
         chars = char_dict()
 
         diff_old = 5000
         for key, char_im in chars.iteritems():
-            #print key
             diff_im = ImageChops.difference(im,char_im)
             stat_im = ImageStat.Stat(diff_im)
 
@@ -74,11 +72,14 @@ def image_diff(filename):
             if diff_var < diff_old:
                 diff_old = diff_var
                 current_key = key
-        #print chr(current_key)
+
         image_string += chr(current_key)
         i+=1
         if i == 50:
-            i=0
-            image_string += "\n"
+            print image_string
+            line = image_string
+            with open(filename[:-4]+'.txt', 'w+') as f:
+                f.append(line)
+            image_string += ""
     return image_string
 

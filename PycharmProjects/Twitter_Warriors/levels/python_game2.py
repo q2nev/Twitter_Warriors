@@ -121,12 +121,10 @@ def image_to_ascii(stop):
             lines = f.readlines()
             for line in lines:
                 print line
-
     else:
         try:
             ascii_string = ASC.image_diff('../ascii/'+img)
-            for line in ascii_string:
-                print line
+            print ascii_string
             with open(img_txt,'w+') as fin:
                 fin.write(ascii_string)
         except:
