@@ -47,7 +47,7 @@
     <file path="/current_user.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1378764631991" ignored="false" />
     <file path="/game.xml" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379702768499" ignored="false" />
     <file path="/python_game.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379105875734" ignored="false" />
-    <file path="/python_game2.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379704079086" ignored="false" />
+    <file path="/python_game2.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379704571689" ignored="false" />
     <file path="/city_twitter.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379347751203" ignored="false" />
     <file path="/ascii_diff.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379610067376" ignored="false" />
     <file path="/player.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379444901615" ignored="false" />
@@ -82,7 +82,7 @@
       <file leaf-file-name="python_game2.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/levels/python_game2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="273" column="24" selection-start="7941" selection-end="7941" vertical-scroll-proportion="0.46370023">
+            <state line="150" column="39" selection-start="3978" selection-end="3978" vertical-scroll-proportion="0.41217798">
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -871,7 +871,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1357" y="-9" width="1698" height="1020" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -881,7 +881,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995272" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43026003" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43026003" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1040,7 +1040,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/levels/python_game2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="273" column="24" selection-start="7941" selection-end="7941" vertical-scroll-proportion="0.46370023">
+        <state line="150" column="39" selection-start="3978" selection-end="3978" vertical-scroll-proportion="0.41217798">
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

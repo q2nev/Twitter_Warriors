@@ -144,10 +144,11 @@ def play_music(stop):
         sound = mix.Sound(sound_file)
         sound.play(maxtime=25000)
 
-def describe(stop):
-    #always print the name of the current station
-    print stop.attrs["nomen"].upper(), "STATION"
-    print stop.desc[0].value
+def describe(stop,mute=False,desc_num=0):
+    # print the name of the current station
+    if mute == False:
+        print stop.attrs["nomen"].upper(), "STATION"
+        print stop.desc[desc_num].value
     #plays the current stations music
     play_music(stop)
 
@@ -244,7 +245,7 @@ def process_command(stop, command): #can also pass stop!
                 print "Could not find any saved games"
                 game_file = 'game.xml'
         else:
-            game_file = 'game.xml','levels'
+            game_file = 'game.xml'
         return load_game(game_file)
 
     elif verb == "score":
@@ -419,6 +420,7 @@ one_word_cmds = {"n" : "describe n","s" : "describe s","e" : "describe e","w" : 
                  "rules":"how to","how":"how to","help":"how to",
                  "next": "go start","begin":"go start","start":"go start",
                  "score":"score board",
+                 "commands":"commands",
                  }
 
 def parse(cmd):
