@@ -215,9 +215,11 @@ def process_command(stop, command): #can also pass stop!
                 finds[boss_kw] = hashes,ats
 
         elif pl:
+            print "Not everybody's trying to hustle a hustler!"
             print pl.desc[0].value
 
         elif itm:
+            print "Grab it!"
             print itm.desc[0].value
 
     elif verb == "load": #loads game from save directory
@@ -245,43 +247,38 @@ def process_command(stop, command): #can also pass stop!
             game_file = 'game.xml','levels'
         return load_game(game_file)
 
-    elif noun == "score":
-        games = os.listdir("..//save")
-        if games:
-            save_count = 0
-            for i, file_name in enumerate(games): #prints the players
-                if file_name.split(".")[1]=='.xml':
+    elif verb == "score":
+        games = os.listdir("../save/")
+        save_count = 0
+        for i, file_name in enumerate(games): #prints the players
+            if file_name[-4:]=='.xml':
+                try:
                     print str(i) + "\t" + file_name.split(".")[0]
-                    print "ats:",load_ats_hashes(file_name)[0]  + "\t" + "hashes:",load_ats_hashes(file_name)[1]
-                    save_count +=1
-            if save_count == 0:
-                return stop
-                print "Choose a game by its number, or type new for new game.\n"
-                choice = raw_input(">>")
-                if choice not in ["N", "n", "new", "NEW"]:
-                    try:
-                        game_file = "saved_games\\" + games[int(choice)]
-                    except:
-                        print "WHAT?"
-
-            else:
-                print "Could not find any saved games"
-                game_file = 'game.xml'
-        else:
-            game_file = 'game.xml'
-        return load_game(game_file)
+                except:
+                    print "couldn't print game"
+                try:
+                    print "Ats:",load_ats_hashes(file_name)[0]  + "\t" + "Hashes:",load_ats_hashes(file_name)[1]
+                except:
+                    print "couldn't find scores"
+            save_count += 1
+        if save_count == 0:
+            print "No saved games!"
+            return stop
+        return stop
 
     elif verb =="cur":
         print "Hashes:", hashes
         print "Ats:",ats
+        return stop
 
     elif verb == "save":
         #save_file: name to save file at via raw_input
         stop_nomen = stop.attrs["nomen"]
         player.attrs["stop"] = str(stop_nomen)
 
-        # player.attrs["hashes"] =
-        # player.attrs["ats"] =
+        player.attrs["hashes"] = hashes
+        player.attrs["ats"] = ats
+
 
         save_file = raw_input("enter a name for the save file>")
         #file = open("../save/" + save_file + ".xml", "w+")
@@ -289,12 +286,44 @@ def process_command(stop, command): #can also pass stop!
         with open("..\\save\\" + save_file + ".xml", "w+") as f:
             f.write(game_data)
             print "game saved!"
+        print "Continue game ? (Y/N) (Pressing N will put exit the game!)"
+        continue_game = raw_input('>>')
+        if continue_game == "Y":
+            return stop
+        elif continue_game == "N":
+            print "OK!"
+            exit()
+        else:
+            print "Unrecognized command, I'll just let you keep playing!"
+
         return stop
+
+    elif verb =="restart":
+        print "Restart game? (Y/N)"
+        restart_game = raw_input('')
+        if restart_game == "Y":
+            return main()
+        elif restart_game == "N":
+            print "OK!"
+            exit()
+        else:
+            print "Unrecognized command, I'll just let you keep playing!"
     elif verb =="how":
         print g_map.stop[0].item[0].desc[0].value
         return stop
+
     elif verb == "exit":
-        exit()
+        print "Do you want to save your game? (Y,N)?"
+        save_file = raw_input('>>')
+        if save_file == "Y":
+            process_command(stop,'save')
+        elif save_file == "N":
+            print "OK!"
+            exit()
+        else:
+            print "What?! (Exit Prompt Error)"
+            process_command(stop,'exit')
+
 
     elif verb =="get":
         pass
@@ -365,6 +394,7 @@ translate_verb = {"g" : "go","go" : "go","walk" : "go","get" : "go","jump" : "go
                   "load":"load","start":"start","save":"save",
                   "how":"how","help":"how",
                   "exit":"exit",
+                  "score":"score"
                   }
 
 translate_noun = {"n": "n","north":"n",
@@ -375,6 +405,7 @@ translate_noun = {"n": "n","north":"n",
                   "d" : "d", "down" : "d",
                   "a" : "a","across":"a","over":"a","cross":"a",
                   "i":"i","h":"i", "inventory":"i",
+                  "board":"board"
                   }
 
 one_word_cmds = {"n" : "describe n","s" : "describe s","e" : "describe e","w" : "describe w",
@@ -387,7 +418,7 @@ one_word_cmds = {"n" : "describe n","s" : "describe s","e" : "describe e","w" : 
                  "i":"cur inventory","h":"cur inventory",
                  "rules":"how to","how":"how to","help":"how to",
                  "next": "go start","begin":"go start","start":"go start",
-                 "score":"give score"
+                 "score":"score board",
                  }
 
 def parse(cmd):

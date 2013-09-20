@@ -4,7 +4,10 @@
     </player>
     <stop nomen="intro" sd="good_ass_intro.ogg" im="intro-1.jpg">
         <desc nomen="intro">
-            Welcome to Twitter Warriors!!! Start the game(s) or load(l) previous game?
+            Welcome to Twitter Rap Battle Warriors!!!
+            To learn more about game play type "how" and press enter.
+            For now, I'll assume you've played this before!
+            Start the game (start) or load (load) a previous game?
         </desc>
         <place nomen="start" dir="s" link="parkchester" fight="false" im="" sd="">
             <desc nomen="next" dir="s">
@@ -37,11 +40,13 @@
                 Are you a chump or player?! If you're not a bitch, twitter battle your way to BK.
                 But if you gamble away all your stash, you'll be screwed!
             </desc>
+            <desc2></desc2>
         </item>
         <item nomen="call" dir="skyward" link="" fight="false" im="" sd="">
             <desc nomen="call" dir="skyward" link="" fight="false" im="" sd="">
                 You've got a cell phone to call the cops or your gang. It could be your lifeline...
             </desc>
+            <desc2></desc2>
         </item>
     </stop>
     <stop nomen="parkchester" link="local" im="parkchester.jpg" sd="">

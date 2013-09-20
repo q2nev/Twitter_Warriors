@@ -45,9 +45,9 @@
     <file path="/make_class.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1378755748823" ignored="false" />
     <file path="/evaluate_levels.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1378763569589" ignored="false" />
     <file path="/current_user.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1378764631991" ignored="false" />
-    <file path="/game.xml" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379700596220" ignored="false" />
+    <file path="/game.xml" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379702768499" ignored="false" />
     <file path="/python_game.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379105875734" ignored="false" />
-    <file path="/python_game2.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379701635402" ignored="false" />
+    <file path="/python_game2.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379704079086" ignored="false" />
     <file path="/city_twitter.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379347751203" ignored="false" />
     <file path="/ascii_diff.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379610067376" ignored="false" />
     <file path="/player.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379444901615" ignored="false" />
@@ -82,7 +82,7 @@
       <file leaf-file-name="python_game2.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/levels/python_game2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="251" column="69" selection-start="7206" selection-end="7206" vertical-scroll-proportion="0.35831383">
+            <state line="273" column="24" selection-start="7941" selection-end="7941" vertical-scroll-proportion="0.46370023">
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -102,7 +102,7 @@
       <file leaf-file-name="game.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/levels/game.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="257" column="20" selection-start="9998" selection-end="9998" vertical-scroll-proportion="0.0">
+            <state line="54" column="52" selection-start="2637" selection-end="2637" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -736,7 +736,9 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/levels/python_game2.py" />
       <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
@@ -1031,14 +1033,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/levels/game.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="257" column="20" selection-start="9998" selection-end="9998" vertical-scroll-proportion="0.0">
+        <state line="54" column="52" selection-start="2637" selection-end="2637" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/levels/python_game2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="251" column="69" selection-start="7206" selection-end="7206" vertical-scroll-proportion="0.35831383">
+        <state line="273" column="24" selection-start="7941" selection-end="7941" vertical-scroll-proportion="0.46370023">
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
