@@ -28,10 +28,11 @@ def load_game(game_file):
     '''
     this function opens a player that has a saved game
     '''
-    with open('..//levels//'+game_file) as f:
+    with open(game_file) as f:
         xml_file = f.read()
 
     success, p_map = game.obj_wrapper(xml_file)
+    #call player map here because we are not altering most of the file.
 
     if not success:
         print "Failure to wrap object."
@@ -42,12 +43,32 @@ def load_game(game_file):
 
     player = p_map.player[0]
 
-    nomen = player.attrs["stop"]
-
+    nomen = player.attrs["stop"] #grab stop from player's xml file and return for game play
     stop = stops[nomen]
 
     return stop
 
+def load_ats_hashes(game_file):
+    global ats
+    global hashes
+    with open('../save/'+game_file) as f:
+        xml_file = f.read()
+
+    success, p_map = game.obj_wrapper(xml_file)
+    #call player map here because we are not altering most of the file.
+
+    if not success:
+        print "Failure to wrap object."
+        exit()
+
+    global player #only need player from file
+
+    player = p_map.player[0]
+
+    ats = player.attrs["ats"] #grab stop from player's xml file and return for game play
+    hashes = player.attrs["hashes"]
+
+    return ats,hashes
 
 def main():
     global g_map
@@ -57,7 +78,7 @@ def main():
     with open("..//levels//game.xml") as f:
         xml_file = f.read()
 
-    success, g_map = game.obj_wrapper(xml_file)
+    success, g_map = game.obj_wrapper(xml_file) #turn into python object via Q2API
     if not success:
         print "Failure to wrap object. Try running mk_class again."
         exit()
@@ -69,7 +90,8 @@ def main():
         nomen = stop.attrs["nomen"]
         stops[nomen] = stop
 
-    for scenario in g_map.scenario:
+    global battles
+    for scenario in g_map.scenario: #
         ats = scenario.attrs['ats']
         hashes = scenario.attrs['hashes']
         battles[(ats,hashes)] = scenario
@@ -81,8 +103,7 @@ def main():
     stop = g_map.stop[0]
     # enter game loop
     while True:
-
-        #prints current stop description, image, sound
+        #prints current stop description, image, sound etc.
         describe(stop)
 
         command = raw_input(">")
@@ -133,7 +154,6 @@ def describe(stop):
     #image_to_ascii(stop)
     return stop
 
-
 def process_command(stop, command): #can also pass stop!
     '''
     1. Parse Command
@@ -143,6 +163,8 @@ def process_command(stop, command): #can also pass stop!
 
     '''
     global finds
+    global hashes
+    global ats
 
     places, items, fights = get_data(stop)
     verb, noun = parse(command)
@@ -198,31 +220,69 @@ def process_command(stop, command): #can also pass stop!
         elif itm:
             print itm.desc[0].value
 
-    elif verb == "load" and noun =="game":
+    elif verb == "load": #loads game from save directory
         games = os.listdir("..//save")
         if games:
-            for i, file_name in enumerate(games): #prints the leaderboard
+            save_count = 0
+            for i, file_name in enumerate(games): #prints the players
                 if file_name.split(".")[1]=='.xml':
                     print str(i) + "\t" + file_name.split(".")[0]
+                    save_count +=1
+            if save_count > 0:
 
-            choice = raw_input("choose a game or type 'N' for a new game\n>")
-            if choice not in ["N", "n", "new", "NEW"]:
-                try:
-                    game_file = "saved_games\\" + games[int(choice)]
-                except:
-                    print "WHAT?"
+                print "Choose a game by its number, or type new for new game.\n"
+                choice = raw_input(">>")
+                if choice not in ["N", "n", "new", "NEW"]:
+                    try:
+                        game_file = "..\\save\\" + games[int(choice)]
+                    except:
+                        print "WHAT?"
 
             else:
+                print "Could not find any saved games"
+                game_file = 'game.xml'
+        else:
+            game_file = 'game.xml','levels'
+        return load_game(game_file)
+
+    elif noun == "score":
+        games = os.listdir("..//save")
+        if games:
+            save_count = 0
+            for i, file_name in enumerate(games): #prints the players
+                if file_name.split(".")[1]=='.xml':
+                    print str(i) + "\t" + file_name.split(".")[0]
+                    print "ats:",load_ats_hashes(file_name)[0]  + "\t" + "hashes:",load_ats_hashes(file_name)[1]
+                    save_count +=1
+            if save_count == 0:
+                return stop
+                print "Choose a game by its number, or type new for new game.\n"
+                choice = raw_input(">>")
+                if choice not in ["N", "n", "new", "NEW"]:
+                    try:
+                        game_file = "saved_games\\" + games[int(choice)]
+                    except:
+                        print "WHAT?"
+
+            else:
+                print "Could not find any saved games"
                 game_file = 'game.xml'
         else:
             game_file = 'game.xml'
         return load_game(game_file)
 
+    elif verb =="cur":
+        print "Hashes:", hashes
+        print "Ats:",ats
+
     elif verb == "save":
         #save_file: name to save file at via raw_input
         stop_nomen = stop.attrs["nomen"]
         player.attrs["stop"] = str(stop_nomen)
+
         # player.attrs["hashes"] =
+        # player.attrs["ats"] =
+
         save_file = raw_input("enter a name for the save file>")
         #file = open("../save/" + save_file + ".xml", "w+")
         game_data = g_map.flatten_self()
@@ -251,7 +311,7 @@ def twitter_data(boss_kw):
     call_prompt = raw_input("What's your call against this mean muggin?!")
 
     #start twitter game here
-    hash_diff, at_diff = battle2(boss_kw,call_prompt)
+    hash_diff, at_diff = battle(boss_kw,call_prompt)
     #return tuple of diff of ats and hashes
     # call_difference
     # a.)grabs the noun as the keyword in twitter for the move/item of the spot
@@ -303,7 +363,8 @@ translate_verb = {"g" : "go","go" : "go","walk" : "go","get" : "go","jump" : "go
                   "l":"describe","look":"describe","describe" : "describe","desc":"describe",
                   "current":"cur","cur":"cur","give":"cur",
                   "load":"load","start":"start","save":"save",
-                  "how":"how","help":"how"
+                  "how":"how","help":"how",
+                  "exit":"exit",
                   }
 
 translate_noun = {"n": "n","north":"n",
@@ -323,9 +384,10 @@ one_word_cmds = {"n" : "describe n","s" : "describe s","e" : "describe e","w" : 
                  "on":"describe on",
                  "l":"load game","load":"load game",
                  "current": "describe around","now": "describe around","around":"describe around",
-                 "i":"give inventory","h":"give inventory",
+                 "i":"cur inventory","h":"cur inventory",
                  "rules":"how to","how":"how to","help":"how to",
-                 "next": "go start","begin":"go start","start":"go start"
+                 "next": "go start","begin":"go start","start":"go start",
+                 "score":"give score"
                  }
 
 def parse(cmd):
@@ -349,51 +411,6 @@ def battle(boss_kw, call_prompt):
     player_hashes = TW.recent_tweets([call_prompt],1)[2]
     ats_diff = player_ats - boss_ats
     hashes_diff = player_hashes - boss_hashes
-    if boss_ats == player_ats:
-        if player_hashes == boss_hashes:
-            print "It's a draw!"
-
-        elif player_hashes > boss_hashes:
-            print "You smoked them out!"
-
-        elif boss_hashes > player_hashes:
-            print "They smoked you out!"
-            print "You lose", hashes_diff, "of your stash."
-
-    elif boss_ats > player_ats:
-        if player_hashes == boss_hashes:
-
-            print "They're packing the same hashes!"
-            print "Run brother, run!!"
-
-        elif player_hashes > boss_hashes:
-            print "They got a big crew, but you smoked them out!"
-            print "Add the difference to your stack! And roll on back!"
-        elif boss_hashes > player_hashes:
-            print "They smoked you out! And you couldn't fight!"
-            print "And you lose", ats_diff,"of your holler @s."
-            print "You lose", hashes_diff, "of your stash."
-
-    elif boss_ats < player_ats:
-        print "You out hollered them. You mad tweeter, you!"
-        if player_hashes == boss_hashes:
-            print "You sly mother. You beat that turkey!"
-
-        elif player_hashes > boss_hashes:
-            print "You smoked them out, too!"
-
-        elif boss_ats > player_ats:
-            print "They smoked you out!"
-            print "You lose", hashes_diff, "of your stash."
-    return ats_diff, hashes_diff
-
-def battle2(boss_kw, call_prompt):
-    boss_ats = retweets()[1]
-    boss_hashes = retweets()[2]
-    player_ats = TW.recent_tweets([call_prompt],1)[1]
-    player_hashes = TW.recent_tweets([call_prompt],1)[2]
-    ats_diff = player_ats - boss_ats
-    hashes_diff = player_hashes - boss_hashes
     print "Hash from battle:", hashes_diff
     print "Holler-Ats from battle:",ats_diff
     if ats_diff > 0:
@@ -409,8 +426,7 @@ def battle2(boss_kw, call_prompt):
         hashes_winner = 'equal'
     else:
         hashes_winner = 'boss'
-
     print battles[(ats_winner,hashes_winner)].desc[0].value
-
+    return hashes_diff, ats_diff
 
 main()

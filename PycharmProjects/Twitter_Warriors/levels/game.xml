@@ -100,6 +100,9 @@
         </item>
         <item nomen="pigeon" dir="up" fight="true" im="" sd="">
             <desc nomen="pigeon" dir="up" fight="true" im="" sd="">
+                You see
+            </desc>
+            <desc2>
                 Pigeon- Intro:
                 A pigeon is a girl who be walkin' by
                 My rimmed up blue red loose Spark wit five
@@ -120,10 +123,10 @@
                 Dem be dem girls who gets no dubz from me
                 Playin' the bar dumb broke with her best friend's coat
                 Tryin' to holla at me
-            </desc>
-            <desc2>
+
                 You're too slow to know this rapper. So it's time for a Twitter Battle!
             </desc2>
+
         </item>
     </stop>
     <stop nomen="outside" link="outside" im="" sd="">
