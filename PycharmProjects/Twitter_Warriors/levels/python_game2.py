@@ -1,5 +1,5 @@
 import game
-import tweeters.twitter as TW
+import twitter as TW
 import ascii_diff as ASC
 import msvcrt
 import os
@@ -7,6 +7,8 @@ import time
 import pygame.mixer as mix
 import string
 import Q2API.xml.mk_class as MK
+import sys
+sys.path.insert(0,'C:/Users/nwatkins/PycharmProjects/Twitter_Warriors')
 
 
 stops = dict()
@@ -46,9 +48,20 @@ def load_game(game_file):
     nomen = player.attrs["stop"] #grab stop from player's xml file and return for game play
     stop = stops[nomen]
 
+    for itm in player.item: #constructs finds dict from loaded player.
+        if itm.attrs["finds"]=='true':
+            boss_kw = itm.attrs["boss_kw"]
+            ats = str(itm.value).split(',')[0].strip() #returns ats from unicode
+            hashes = str(itm.value).split(',')[1].strip() #returns hashes from unicode
+            finds[boss_kw] = ats,hashes
+
     return stop
 
 def print_break():
+    '''
+    make game play for ascii printing challenge.
+    '''
+
     pass
 
 def load_ats_hashes(game_file):
@@ -115,6 +128,11 @@ def main():
 
 
 def image_to_ascii(stop):
+    '''
+    image_folder: where the images are stored
+    img:
+    img_txt: possible text string that would've already been generated
+    '''
     image_folder = os.listdir('../ascii/')
     img= str(stop.attrs["im"]).strip(string.whitespace)
     img_txt = img[:-4]+'.txt'
@@ -152,8 +170,9 @@ def describe(stop,mute=False,desc_num=0):
     if mute == False:
         print stop.attrs["nomen"].upper(), "STATION"
         print stop.desc[desc_num].value
-    #plays the current stations music
-    #play_music(stop)
+
+    #plays the current music
+    play_music(stop)
     image_to_ascii(stop)
     return stop
 
@@ -185,7 +204,7 @@ def process_command(stop, command): #can also pass stop!
         pl = places.get(noun)
         itm = places.get(noun)
 
-        if boss_kw == "around":
+        if boss_kw == "around": #functionality to show current landscape.
             for pl in stop.place:
                 for des in pl.desc:
                     print "\n\t"+"Place description:", des.value,
@@ -244,7 +263,7 @@ def process_command(stop, command): #can also pass stop!
             game_file = 'game.xml'
         return load_game(game_file)
 
-    elif verb == "score":
+    elif verb == "score": #score board functionality
         games = os.listdir("../save/")
         save_count = 0
         for i, file_name in enumerate(games): #prints the players
@@ -268,7 +287,7 @@ def process_command(stop, command): #can also pass stop!
         print "Ats:",ats
         return stop
 
-    elif verb == "save":
+    elif verb=="save":
         #save_file: name to save file at via raw_input
         stop_nomen = stop.attrs["nomen"]
         player.attrs["stop"] = str(stop_nomen)
@@ -276,9 +295,12 @@ def process_command(stop, command): #can also pass stop!
         player.attrs["hashes"] = hashes
         player.attrs["ats"] = ats
 
+        for itm in player.item:
+            if itm.attrs["boss_kw"] in finds.keys():
+                itm.attrs["finds"] = 'true'
 
         save_file = raw_input("enter a name for the save file>")
-        #file = open("../save/" + save_file + ".xml", "w+")
+
         game_data = g_map.flatten_self()
         with open("..\\save\\" + save_file + ".xml", "w+") as f:
             f.write(game_data)
@@ -297,9 +319,14 @@ def process_command(stop, command): #can also pass stop!
 
     elif verb =="restart":
         print "Restart game? (Y/N)"
-        restart_game = raw_input('')
+        restart_game = raw_input('>>')
         if restart_game == "Y":
-            return main()
+            print "Do you want to save first? (Y/N)"
+            save_first = raw_input('>>')
+            if save_first == 'Y':
+                return
+            else:
+                return main()
         elif restart_game == "N":
             print "OK!"
             exit()
