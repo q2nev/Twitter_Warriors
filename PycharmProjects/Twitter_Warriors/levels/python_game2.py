@@ -31,19 +31,15 @@ def load_game(game_file):
     '''
     with open(game_file) as f:
         xml_file = f.read()
-
-    success, p_map = game.obj_wrapper(xml_file)
     #call player map here because we are not altering most of the file.
-
+    success, p_map = game.obj_wrapper(xml_file)
     if not success:
         print "Failure to wrap object."
         exit()
-
     global player #only need player from file
     global stops #grab dict from main file so that we can call current stop from nomen attribute
 
-    player = p_map.player[0]
-
+    player = p_map.player[0] #assign player via Q2API.xml.mk_class syntax
     nomen = player.attrs["stop"] #grab stop from player's xml file and return for game play
     stop = stops[nomen]
 
@@ -53,20 +49,7 @@ def load_game(game_file):
             ats = str(itm.value).split(',')[0].strip() #returns ats from unicode
             hashes = str(itm.value).split(',')[1].strip() #returns hashes from unicode
             finds[boss_kw] = ats,hashes
-
     return stop
-
-def print_break():
-    '''
-    make game play for ascii printing challenge.
-    '''
-    initial_char = msvcrt.getch()
-    if initial_char == "/r":
-        print "What's your guess?"
-        guess = raw_input('>>')
-        return guess
-    else:
-        return ""
 
 def load_ats_hashes(game_file):
     global ats
@@ -76,45 +59,35 @@ def load_ats_hashes(game_file):
 
     success, p_map = game.obj_wrapper(xml_file)
     #call player map here because we are not altering most of the file.
-
     if not success:
         print "Failure to wrap object."
         exit()
-
     global player #only need player from file
-
     player = p_map.player[0]
-
     ats = player.attrs["ats"] #grab stop from player's xml file and return for game play
     hashes = player.attrs["hashes"]
-
     return ats,hashes
 
 def main():
     global g_map
-
     # load game map
     with open("..//levels//game.xml") as f:
         xml_file = f.read()
-
     success, g_map = game.obj_wrapper(xml_file) #turn into python object via Q2API
     if not success:
         print "Failure to wrap object. Try running mk_class again."
         exit()
-
-    # construct stops dict
+    # construct global dicts: stops, battles and
     global stops
-
     for stop in g_map.stop:
         nomen = stop.attrs["nomen"]
         stops[nomen] = stop
-
     global battles
     for scenario in g_map.scenario: # load scenarios in to dict with ats, hashes
         ats = scenario.attrs['ats']
         hashes = scenario.attrs['hashes']
         battles[(ats,hashes)] = scenario
-
+    # initalize player
     global player
     player = g_map.player[0]
 
@@ -143,29 +116,43 @@ def image_to_ascii(stop):
     img_txt = img[:-4]+'.txt'
 
     boss_kw = str(stop.attrs["nomen"]).strip(string.whitespace)
-
     if img_txt in image_folder:
         with open('../ascii/'+img_txt) as f:
-            lines = f.readlines()
-            for l in lines:
-                # if boss_kw == print_break():
-                #     hashes += 5
-                #     ats +=5
-                #     break
-                # else:
-                print l
-    else:
-        try:
-            ascii_string = ASC.image_diff('../ascii/'+img)
-            print type(ascii_string)
-            fin = open('../ascii/'+img_txt,'a')
-            for l in ascii_string:
-                fin.append(l)
-            fin.close()
-        except:
-            print "Problem with current image."
+            lines = f.read()
+            print "Guess ascii by pressing enter!"
+            play_music(stop)
+            for l in lines.split('\t'):
 
-def play_music(stop):
+                while not msvcrt.kbhit():
+                    time.sleep(1.5)
+                    break
+                print l
+
+                while msvcrt.kbhit():
+                    msvcrt.getch()
+                    print "-----------------------------------------------"
+                    print "What's your guess?"
+                    boss_guess = raw_input(">>")
+
+                    if boss_guess == boss_kw:
+                        print "You guessed right! Here are 5 hashes and ats for your prowess!"
+                        hashes += 5
+                        ats += 5
+
+                        break
+    else:
+        #try:
+        ascii_string = ASC.image_diff('../ascii/'+img)
+        print type(ascii_string)
+        fin = open('../ascii/'+img_txt,'w')
+        print "file opened"
+        for i in range(len(ascii_string)):
+            fin.write(ascii_string[i]+'\t')
+        fin.close()
+        #except:
+        #    print "Problem with current image."
+
+def play_music(stop, start=True):
     #sound_delay = str(stop.attrs["delay"]).strip(string.whitespace)
     mix.init()
     sound_file = str(stop.attrs["sd"]).strip(string.whitespace)
@@ -174,7 +161,10 @@ def play_music(stop):
     else:
         sounds[sound_file] = True
         sound = mix.Sound(sound_file)
-        sound.play()
+        if start:
+            sound.play()
+        else:
+            sound.stop()
 
 def describe(stop,mute=False,desc_num=0):
     # print the name of the current station
@@ -182,8 +172,6 @@ def describe(stop,mute=False,desc_num=0):
         print stop.attrs["nomen"].upper(), "STATION"
         print stop.desc[desc_num].value
 
-    #plays the current music
-    #play_music(stop)
     image_to_ascii(stop)
     return stop
 
@@ -376,11 +364,7 @@ def twitter_data(boss_kw):
 
     #start twitter game here
     hash_diff, at_diff = battle(boss_kw,call_prompt)
-    #return tuple of diff of ats and hashes
-    # call_difference
-    # a.)grabs the noun as the keyword in twitter for the move/item of the spot
-    #       -if the move/item does not have a keyword, return the same values for the player
-    # b.)grab the keyword
+
 
     finds[boss_kw] = hash_diff,at_diff
     #maybe use get function here to define
@@ -472,6 +456,10 @@ def retweets(): #returns ats and hashes of most recent retweet
     return tweets, ats, hashes
 
 def battle(boss_kw, call_prompt):
+    '''
+    Input: boss_kw and prompt for 'call' or 'gang call'
+    Output:
+    '''
     boss_ats = retweets()[1]
     boss_hashes = retweets()[2]
     player_ats = TW.recent_tweets([call_prompt],1)[1]
