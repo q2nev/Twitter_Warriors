@@ -15,11 +15,11 @@ def resize_image(im):
     im_w = im.size[0]
     im_h = im.size[1]
 
-    new_im_height = (im_h * 400)/im_w
+    new_im_height = (im_h * 640)/im_w
     new_height_rem = new_im_height%12
     new_im_height = new_im_height - new_height_rem
 
-    im = ImageOps.fit(im,(400, new_im_height),Image.ANTIALIAS)
+    im = ImageOps.fit(im,(640, new_im_height),Image.ANTIALIAS)
     return im
 
 def char_dict():
@@ -76,13 +76,11 @@ def image_diff(filename):
 
         image_string += chr(current_key)
         t+=1
-        if t == 50: #
+        if t == 80: #
             print image_string
             line = image_string
             image_lines.append(line)
             image_string = ""
             t=0
 
-    with open(filename[:-4]+'.txt', 'w+') as f: # save image to .txt file
-        for line in image_lines:
-            f.write(line)
+    return image_lines

@@ -56,7 +56,7 @@ def load_game(game_file):
 
     return stop
 
-def print_break(boss_kw):
+def print_break():
     '''
     make game play for ascii printing challenge.
     '''
@@ -65,6 +65,8 @@ def print_break(boss_kw):
         print "What's your guess?"
         guess = raw_input('>>')
         return guess
+    else:
+        return ""
 
 def load_ats_hashes(game_file):
     global ats
@@ -127,33 +129,7 @@ def main():
         #returns next stop, prints various things via command
         stop = process_command(stop, command)
 
-
 def image_to_ascii(stop):
-    '''
-    image_folder: where the images are stored
-    img:
-    img_txt: possible text string that would've already been generated
-    '''
-    image_folder = os.listdir('../ascii/')
-    img= str(stop.attrs["im"]).strip(string.whitespace)
-    img_txt = img[:-4]+'.txt'
-
-    if img_txt in image_folder:
-        print "Found image Text"
-        with open(img_txt) as f:
-            lines = f.readlines()
-            for line in lines:
-                print line
-    else:
-        try:
-            ascii_string = ASC.image_diff('../ascii/'+img)
-            print ascii_string
-            with open(img_txt,'w+') as fin:
-                fin.write(ascii_string)
-        except:
-            print "Problem with current image."
-
-def image_to_ascii2(stop):
     '''
     separate image_to_ascii function to have guessing game.
     image_folder: where the images are stored
@@ -165,23 +141,27 @@ def image_to_ascii2(stop):
     image_folder = os.listdir('../ascii/')
     img= str(stop.attrs["im"]).strip(string.whitespace)
     img_txt = img[:-4]+'.txt'
+
     boss_kw = str(stop.attrs["nomen"]).strip(string.whitespace)
 
     if img_txt in image_folder:
-        with open(img_txt) as f:
+        with open('../ascii/'+img_txt) as f:
             lines = f.readlines()
-            for line in lines:
-                if boss_kw == print_break():
-                    hashes += 5
-                    ats +=5
-                    break
-                print line
+            for l in lines:
+                # if boss_kw == print_break():
+                #     hashes += 5
+                #     ats +=5
+                #     break
+                # else:
+                print l
     else:
         try:
             ascii_string = ASC.image_diff('../ascii/'+img)
-            print ascii_string
-            with open(img_txt,'w+') as fin:
-                fin.write(ascii_string)
+            print type(ascii_string)
+            fin = open('../ascii/'+img_txt,'a')
+            for l in ascii_string:
+                fin.append(l)
+            fin.close()
         except:
             print "Problem with current image."
 
@@ -194,7 +174,7 @@ def play_music(stop):
     else:
         sounds[sound_file] = True
         sound = mix.Sound(sound_file)
-        sound.play(maxtime=25000)
+        sound.play()
 
 def describe(stop,mute=False,desc_num=0):
     # print the name of the current station
@@ -203,7 +183,7 @@ def describe(stop,mute=False,desc_num=0):
         print stop.desc[desc_num].value
 
     #plays the current music
-    play_music(stop)
+    #play_music(stop)
     image_to_ascii(stop)
     return stop
 
@@ -428,10 +408,10 @@ def get_data(stop): #can also pass stop and will have same result!
     items = dict()
     for pl in stop.place:
         nomen = pl.attrs["nomen"]
-        dir = pl.attrs["dir"]
+        dirs = pl.attrs["dir"]
         fight = pl.attrs["fight"]
         places[nomen] = pl
-        places[dir] = pl
+        places[dirs] = pl
         fights[nomen] = fight
 
     for itm in stop.item:
