@@ -47,7 +47,7 @@
     <file path="/current_user.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1378764631991" ignored="false" />
     <file path="/game.xml" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379956866275" ignored="false" />
     <file path="/python_game.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379105875734" ignored="false" />
-    <file path="/python_game2.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379970942585" ignored="false" />
+    <file path="/python_game2.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379971699366" ignored="false" />
     <file path="/city_twitter.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379347751203" ignored="false" />
     <file path="/ascii_diff.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379958887960" ignored="false" />
     <file path="/player.py" changelist="fc61b266-a813-4943-ab1f-6b63489e28eb" time="1379444901615" ignored="false" />
@@ -84,10 +84,10 @@
       <file leaf-file-name="python_game2.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/levels/python_game2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="22" selection-start="2861" selection-end="2861" vertical-scroll-proportion="0.7546729">
+            <state line="130" column="34" selection-start="3977" selection-end="3977" vertical-scroll-proportion="0.63296705">
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#12317#12767#0" expanded="false" />
+                <element signature="e#12231#12681#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -97,15 +97,6 @@
         <entry file="file://$PROJECT_DIR$/levels/ascii_diff.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="68" column="45" selection-start="1687" selection-end="1687" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="battle.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/levels/battle.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -885,7 +876,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1357" y="-9" width="1698" height="1020" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -895,7 +886,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995272" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.429078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.429078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1023,16 +1014,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/levels/battle.py">
+    <entry file="file://$PROJECT_DIR$/levels/game.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0">
+        <state line="5" column="75" selection-start="290" selection-end="290" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/levels/game.xml">
+    <entry file="file://$PROJECT_DIR$/levels/battle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="75" selection-start="290" selection-end="290" vertical-scroll-proportion="0.0">
+        <state line="6" column="33" selection-start="203" selection-end="203" vertical-scroll-proportion="-0.83076924">
           <folding />
         </state>
       </provider>
@@ -1046,10 +1037,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/levels/python_game2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="22" selection-start="2861" selection-end="2861" vertical-scroll-proportion="0.7546729">
+        <state line="130" column="34" selection-start="3977" selection-end="3977" vertical-scroll-proportion="0.63296705">
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#12317#12767#0" expanded="false" />
+            <element signature="e#12231#12681#0" expanded="false" />
           </folding>
         </state>
       </provider>

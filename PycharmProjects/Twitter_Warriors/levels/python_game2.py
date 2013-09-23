@@ -93,13 +93,11 @@ def main():
 
     # give initial stop
     stop = g_map.stop[0]
+
     # enter game loop
     while True:
-        #prints current stop description, image, sound etc.
         describe(stop)
-
         command = raw_input(">")
-        #returns next stop, prints various things via command
         stop = process_command(stop, command)
 
 def image_to_ascii(stop):
@@ -115,12 +113,13 @@ def image_to_ascii(stop):
     img= str(stop.attrs["im"]).strip(string.whitespace)
     img_txt = img[:-4]+'.txt'
 
+    play_music(stop)
     boss_kw = str(stop.attrs["nomen"]).strip(string.whitespace)
     if img_txt in image_folder:
         with open('../ascii/'+img_txt) as f:
             lines = f.read()
             print "Guess ascii by pressing enter!"
-            play_music(stop)
+
             for l in lines.split('\t'):
 
                 while not msvcrt.kbhit():
@@ -130,6 +129,7 @@ def image_to_ascii(stop):
 
                 while msvcrt.kbhit():
                     msvcrt.getch()
+                    play_music(stop,False)
                     print "-----------------------------------------------"
                     print "What's your guess?"
                     boss_guess = raw_input(">>")
