@@ -76,12 +76,13 @@ def image_diff(filename):
 
         image_string += chr(current_key)
         t+=1
-        if t == 50:
+        if t == 50: #
             print image_string
             line = image_string
             image_lines.append(line)
             image_string = ""
             t=0
-    with open(filename[:-4]+'.txt', 'w+') as f:
+
+    with open(filename[:-4]+'.txt', 'w+') as f: # save image to .txt file
         for line in image_lines:
             f.write(line)

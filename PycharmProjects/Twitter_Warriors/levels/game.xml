@@ -1,9 +1,9 @@
 <game>
     <player stop="parkchester" hashes="20" ats="20" finds="{}">
-        <item boss_kw="pocket sand" found="false">pocket sand</item>
-        <item boss_kw="chicken" found="false">chicken</item>
+        <item boss_kw="pocket sand" finds="false">pocket sand</item>
+        <item boss_kw="chicken" finds="false">chicken</item>
     </player>
-    <stop nomen="intro" sd="good_ass_intro.ogg" im="intro-1.jpg">
+    <stop nomen="intro" sd="good_ass_intro.ogg" im="chance-the-rapper.jpg">
         <desc nomen="intro">
             Welcome to Twitter Rap Battle Warriors!!!
             To learn more about game play type "how" and press enter.

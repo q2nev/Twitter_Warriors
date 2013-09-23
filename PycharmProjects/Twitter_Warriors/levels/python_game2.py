@@ -10,7 +10,6 @@ import Q2API.xml.mk_class as MK
 import sys
 sys.path.insert(0,'C:/Users/nwatkins/PycharmProjects/Twitter_Warriors')
 
-
 stops = dict()
 fights = dict()
 items = dict()
@@ -57,12 +56,15 @@ def load_game(game_file):
 
     return stop
 
-def print_break():
+def print_break(boss_kw):
     '''
     make game play for ascii printing challenge.
     '''
-
-    pass
+    initial_char = msvcrt.getch()
+    if initial_char == "/r":
+        print "What's your guess?"
+        guess = raw_input('>>')
+        return guess
 
 def load_ats_hashes(game_file):
     global ats
@@ -88,7 +90,6 @@ def load_ats_hashes(game_file):
 
 def main():
     global g_map
-     #keep track of which images have been printed
 
     # load game map
     with open("..//levels//game.xml") as f:
@@ -107,7 +108,7 @@ def main():
         stops[nomen] = stop
 
     global battles
-    for scenario in g_map.scenario: #
+    for scenario in g_map.scenario: # load scenarios in to dict with ats, hashes
         ats = scenario.attrs['ats']
         hashes = scenario.attrs['hashes']
         battles[(ats,hashes)] = scenario
@@ -138,10 +139,10 @@ def image_to_ascii(stop):
     img_txt = img[:-4]+'.txt'
 
     if img_txt in image_folder:
+        print "Found image Text"
         with open(img_txt) as f:
             lines = f.readlines()
             for line in lines:
-                print_break()
                 print line
     else:
         try:
@@ -152,7 +153,37 @@ def image_to_ascii(stop):
         except:
             print "Problem with current image."
 
+def image_to_ascii2(stop):
+    '''
+    separate image_to_ascii function to have guessing game.
+    image_folder: where the images are stored
+    img:
+    img_txt: possible text string that would've already been generated
+    '''
+    global hashes
+    global ats
+    image_folder = os.listdir('../ascii/')
+    img= str(stop.attrs["im"]).strip(string.whitespace)
+    img_txt = img[:-4]+'.txt'
+    boss_kw = str(stop.attrs["nomen"]).strip(string.whitespace)
 
+    if img_txt in image_folder:
+        with open(img_txt) as f:
+            lines = f.readlines()
+            for line in lines:
+                if boss_kw == print_break():
+                    hashes += 5
+                    ats +=5
+                    break
+                print line
+    else:
+        try:
+            ascii_string = ASC.image_diff('../ascii/'+img)
+            print ascii_string
+            with open(img_txt,'w+') as fin:
+                fin.write(ascii_string)
+        except:
+            print "Problem with current image."
 
 def play_music(stop):
     #sound_delay = str(stop.attrs["delay"]).strip(string.whitespace)
@@ -207,14 +238,14 @@ def process_command(stop, command): #can also pass stop!
         if boss_kw == "around": #functionality to show current landscape.
             for pl in stop.place:
                 for des in pl.desc:
-                    print "\n\t"+"Place description:", des.value,
+                    print "\n\t"+"Place description:", str(des.value).strip(string.whitespace)
                     print "\n\t"+"Name for place:", des.attrs["nomen"]
                     print "\n\t"+"direction for place:", des.attrs["dir"]
                     print "_____________________________________"
 
             for itm in stop.item:
                 for des in itm.desc:
-                    print "\n\t"+"item description:", des.value
+                    print "\n\t"+"item description:", str(des.value).strip(string.whitespace)
                     print "\n\t"+"Name for item:",des.attrs["nomen"]
                     print "\n\t"+"direction for item:",des.attrs["dir"]
                     print "_____________________________________"
